@@ -1,0 +1,26 @@
+{
+  "name": "ukhsa",
+  "version": "1.0.0",
+  "description": "ukhsa example",
+  "homepage": "https://github.com/ncolley43/UKHSA#readme",
+  "bugs": {
+    "url": "https://github.com/ncolley43/UKHSA/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ncolley43/UKHSA.git"
+  },
+  "license": "ISC",
+  "author": "Nik Colley",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test",
+    "test:master": "gh workflow run playwright.yml --ref master",
+    "test:ui": "playwright test --ui"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.65.1",
+    "@types/node": "^26.6.6"
+  }
+}
