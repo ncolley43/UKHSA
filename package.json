@@ -14,12 +14,27 @@
   "author": "Nik Colley",
   "type": "commonjs",
   "main": "index.js",
+  "//": [
+    "Terminal commands for the scripts below:",
+    "npm test                  - run all tests headless (no browser window)",
+    "npm run test:master       - start the GitHub Actions workflow against master on GitHub",
+    "npm run test:ui           - open Playwright's interactive UI to pick and step through tests",
+    "npm run test:api          - run only the API tests (no browser needed)",
+    "npm run test:a11y         - run only the accessibility tests (WCAG 2.2 AA scans, keyboard and structure checks)",
+    "npm run test:visual       - check the UKHSA homepage layout matches the last passing run (updates the baseline on a pass)",
+    "npm run test:visual:reset - throw away the saved screenshot and take a fresh baseline"
+  ],
   "scripts": {
     "test": "playwright test",
     "test:master": "gh workflow run playwright.yml --ref master",
-    "test:ui": "playwright test --ui"
+    "test:ui": "playwright test --ui",
+    "test:api": "playwright test --project=api",
+    "test:a11y": "playwright test --project=accessibility",
+    "test:visual": "playwright test --project=visual",
+    "test:visual:reset": "playwright test --project=visual --update-snapshots"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
     "@playwright/test": "^1.65.1",
     "@types/node": "^26.6.6"
   }
