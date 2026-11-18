@@ -6,3 +6,6 @@ node_modules/
 /blob-report/
 /playwright/.cache/
 /playwright/.auth/
+
+# API request/response log written by reporters/api-log-reporter.ts
+/api-results/

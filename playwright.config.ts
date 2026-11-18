@@ -22,11 +22,16 @@ export default defineConfig({
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: 'html',
+  reporter: [
+    ['html'],
+    /* Writes every API request and response to api-results/api-log.json */
+    ['./reporters/api-log-reporter.ts'],
+  ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('')`. */
-    // baseURL: 'http://localhost:3000',
+    /* Override with the BASE_URL environment variable to target another environment. */
+    baseURL: process.env.BASE_URL ?? 'https://www.gov.uk',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
@@ -34,18 +39,41 @@ export default defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
+    /* API tests don't need a browser, so run them once in their own project. */
+    {
+      name: 'api',
+      testMatch: 'api/**/*.spec.ts',
+    },
+
+    /* Accessibility tests run once in Chrome - axe results don't vary by browser. */
+    {
+      name: 'accessibility',
+      testMatch: 'accessibility/**/*.spec.ts',
+      use: { ...devices['Desktop Chrome'] },
+    },
+
+    /* Screenshot comparisons run in one browser, at one screen size, so baselines stay consistent. */
+    {
+      name: 'visual',
+      testMatch: 'visual/**/*.spec.ts',
+      use: { ...devices['Desktop Chrome'] },
+    },
+
     {
       name: 'chromium',
+      testIgnore: ['api/**', 'accessibility/**', 'visual/**'],
       use: { ...devices['Desktop Chrome'] },
     },
 
     {
       name: 'firefox',
+      testIgnore: ['api/**', 'accessibility/**', 'visual/**'],
       use: { ...devices['Desktop Firefox'] },
     },
 
     {
       name: 'webkit',
+      testIgnore: ['api/**', 'accessibility/**', 'visual/**'],
       use: { ...devices['Desktop Safari'] },
     },
 
