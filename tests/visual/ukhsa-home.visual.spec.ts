@@ -47,6 +47,12 @@ test('UKHSA homepage layout matches the last passing run', async ({ page }, test
   await expect(page.getByRole('heading', { level: 1, name: 'UK Health Security Agency' })).toBeVisible();
   await page.waitForLoadState('load');
 
+  // Some images (e.g. the management team photos) only load when scrolled into view,
+  // so load them all now - otherwise the screenshot can catch empty gaps where they go
+  await page.locator('img[loading="lazy"]').evaluateAll(images => images.forEach(img => img.setAttribute('loading', 'eager')));
+  await expect.poll(() => page.locator('img').evaluateAll(images => images.every(img => (img as HTMLImageElement).complete)),
+    { message: 'Waiting for all images to load' }).toBe(true);
+
   const screenshot = await stableScreenshot(page);
   const baselinePath = testInfo.snapshotPath(screenshotName);
 
