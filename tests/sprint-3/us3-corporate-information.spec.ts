@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { homepage, acceptCookiesIfShown } from '../ukhsa';
 
-// Release 3 - User story 3
+// Sprint 3 - User story 3
 // As a member of the public, I want links to UKHSA's corporate information and jobs,
 // so that I can find policies, governance and job vacancies.
 
@@ -13,7 +13,7 @@ const links = [
   'Working for UKHSA',
 ];
 
-test.describe('R3 US3 - Corporate information', { tag: ['@R3', '@US3', '@live-safe'] }, () => {
+test.describe('S3 US3 - Corporate information', { tag: ['@S3', '@US3', '@live-safe'] }, () => {
   test('corporate information and jobs links are shown', async ({ page }) => {
     await page.goto(homepage);
     await acceptCookiesIfShown(page);

@@ -1,11 +1,11 @@
 import { test, expect } from '@playwright/test';
 import { homepage } from '../ukhsa';
 
-// Release 1 - User story 4
+// Sprint 1 - User story 4
 // As a member of the public, I want to be able to reject additional cookies,
 // so that I control how my visit is tracked.
 
-test.describe('R1 US4 - Rejecting cookies', { tag: ['@R1', '@US4', '@live-safe'] }, () => {
+test.describe('S1 US4 - Rejecting cookies', { tag: ['@S1', '@US4', '@live-safe'] }, () => {
   test('rejecting additional cookies confirms the choice and hides the banner', async ({ page }) => {
     await page.goto(homepage);
 

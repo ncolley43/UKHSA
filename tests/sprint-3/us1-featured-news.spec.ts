@@ -1,11 +1,11 @@
 import { test, expect } from '@playwright/test';
 import { homepage, acceptCookiesIfShown } from '../ukhsa';
 
-// Release 3 - User story 1
+// Sprint 3 - User story 1
 // As a member of the public, I want to see UKHSA's featured news on the homepage,
 // so that I hear about the most important updates.
 
-test.describe('R3 US1 - Featured news', { tag: ['@R3', '@US1', '@live-safe'] }, () => {
+test.describe('S3 US1 - Featured news', { tag: ['@S3', '@US1', '@live-safe'] }, () => {
   test('"Featured" shows news stories that open the full article', async ({ page }) => {
     await page.goto(homepage);
     await acceptCookiesIfShown(page);

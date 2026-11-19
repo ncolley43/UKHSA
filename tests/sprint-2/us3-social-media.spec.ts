@@ -1,13 +1,13 @@
 import { test, expect } from '@playwright/test';
 import { homepage, acceptCookiesIfShown } from '../ukhsa';
 
-// Release 2 - User story 3
+// Sprint 2 - User story 3
 // As a member of the public, I want links to UKHSA's social media accounts,
 // so that I can follow their updates.
 
 const accounts = ['Blog', 'Bluesky', 'Facebook', 'Instagram', 'LinkedIn', 'X (previously Twitter)', 'YouTube'];
 
-test.describe('R2 US3 - Social media links', { tag: ['@R2', '@US3', '@live-safe'] }, () => {
+test.describe('S2 US3 - Social media links', { tag: ['@S2', '@US3', '@live-safe'] }, () => {
   test('"Follow us" links to each account in a new tab', async ({ page }) => {
     await page.goto(homepage);
     await acceptCookiesIfShown(page);

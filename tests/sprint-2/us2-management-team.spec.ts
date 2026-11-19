@@ -1,11 +1,11 @@
 import { test, expect } from '@playwright/test';
 import { homepage, acceptCookiesIfShown } from '../ukhsa';
 
-// Release 2 - User story 2
+// Sprint 2 - User story 2
 // As a member of the public, I want to see who runs UKHSA,
 // so that I know who is accountable for the agency.
 
-test.describe('R2 US2 - Management team', { tag: ['@R2', '@US2', '@live-safe'] }, () => {
+test.describe('S2 US2 - Management team', { tag: ['@S2', '@US2', '@live-safe'] }, () => {
   test('"Our management" lists the Chief Executive with a photo', async ({ page }) => {
     await page.goto(homepage);
     await acceptCookiesIfShown(page);
