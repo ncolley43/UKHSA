@@ -9,8 +9,8 @@ if (!process.env.TEST_WORKER_INDEX) {
   console.log(`Testing against ${environment.label}: ${process.env.BASE_URL ?? environment.baseURL}`);
 }
 
-/* On live, release tests only run if they're tagged @live-safe (read-only, change no data) */
-const releaseTestGrep = environment.liveSafeOnly ? /@live-safe/ : undefined;
+/* On live, sprint tests only run if they're tagged @live-safe (read-only, change no data) */
+const sprintTestGrep = environment.liveSafeOnly ? /@live-safe/ : undefined;
 
 /**
  * Read environment variables from file.
@@ -73,25 +73,25 @@ export default defineConfig({
       use: { ...devices['Desktop Chrome'] },
     },
 
-    /* Release and user story tests (tests/release-*) run in all three browsers. */
+    /* Sprint and user story tests (tests/sprint-*) run in all three browsers. */
     {
       name: 'chromium',
       testIgnore: ['api/**', 'accessibility/**', 'visual/**'],
-      grep: releaseTestGrep,
+      grep: sprintTestGrep,
       use: { ...devices['Desktop Chrome'] },
     },
 
     {
       name: 'firefox',
       testIgnore: ['api/**', 'accessibility/**', 'visual/**'],
-      grep: releaseTestGrep,
+      grep: sprintTestGrep,
       use: { ...devices['Desktop Firefox'] },
     },
 
     {
       name: 'webkit',
       testIgnore: ['api/**', 'accessibility/**', 'visual/**'],
-      grep: releaseTestGrep,
+      grep: sprintTestGrep,
       use: { ...devices['Desktop Safari'] },
     },
 

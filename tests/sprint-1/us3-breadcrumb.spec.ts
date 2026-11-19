@@ -1,11 +1,11 @@
 import { test, expect } from '@playwright/test';
 import { homepage, acceptCookiesIfShown } from '../ukhsa';
 
-// Release 1 - User story 3
+// Sprint 1 - User story 3
 // As a member of the public, I want a breadcrumb trail on the homepage,
 // so that I can get back to the list of all government organisations.
 
-test.describe('R1 US3 - Breadcrumb navigation', { tag: ['@R1', '@US3', '@live-safe'] }, () => {
+test.describe('S1 US3 - Breadcrumb navigation', { tag: ['@S1', '@US3', '@live-safe'] }, () => {
   test('"Organisations" breadcrumb goes to the list of all organisations', async ({ page }) => {
     await page.goto(homepage);
     await acceptCookiesIfShown(page);

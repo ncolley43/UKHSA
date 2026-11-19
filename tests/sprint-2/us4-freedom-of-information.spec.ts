@@ -1,11 +1,11 @@
 import { test, expect } from '@playwright/test';
 import { homepage, acceptCookiesIfShown } from '../ukhsa';
 
-// Release 2 - User story 4
+// Sprint 2 - User story 4
 // As a member of the public, I want to know how to make a Freedom of Information request,
 // so that I can ask UKHSA for information it holds.
 
-test.describe('R2 US4 - Freedom of Information requests', { tag: ['@R2', '@US4', '@live-safe'] }, () => {
+test.describe('S2 US4 - Freedom of Information requests', { tag: ['@S2', '@US4', '@live-safe'] }, () => {
   test('FOI section explains how to make a request and who to contact', async ({ page }) => {
     await page.goto(homepage);
     await acceptCookiesIfShown(page);

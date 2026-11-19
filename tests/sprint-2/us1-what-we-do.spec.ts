@@ -1,11 +1,11 @@
 import { test, expect } from '@playwright/test';
 import { homepage, acceptCookiesIfShown } from '../ukhsa';
 
-// Release 2 - User story 1
+// Sprint 2 - User story 1
 // As a member of the public, I want to read what UKHSA does,
 // so that I understand the agency's purpose.
 
-test.describe('R2 US1 - "What we do" section', { tag: ['@R2', '@US1', '@live-safe'] }, () => {
+test.describe('S2 US1 - "What we do" section', { tag: ['@S2', '@US1', '@live-safe'] }, () => {
   test('describes the agency and links to more information', async ({ page }) => {
     await page.goto(homepage);
     await acceptCookiesIfShown(page);

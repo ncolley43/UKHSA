@@ -19,15 +19,15 @@
     "npm test                  - run all tests headless (no browser window), against SIT",
     "npm run test:sit          - run all tests against SIT",
     "npm run test:e2e          - run all tests against E2E",
-    "npm run test:live         - run against live - release tests only run if tagged @live-safe",
+    "npm run test:live         - run against live - sprint tests only run if tagged @live-safe",
     "npm run test:master       - start the GitHub Actions workflow against master on GitHub (add -- -f environment=e2e to pick the environment)",
     "npm run test:head         - run all tests with the browser visible",
-    "npm run test:ui           - open Playwright's interactive UI (API, accessibility and Chromium ticked - tick more under Projects); type tags like @R3 @US4 in the Filter box",
+    "npm run test:ui           - open Playwright's interactive UI (API, accessibility and Chromium ticked - tick more under Projects); type tags like @S3 @US4 in the Filter box",
     "npm run test:api          - run only the API tests (no browser needed)",
     "npm run test:a11y         - run only the accessibility tests (WCAG 2.2 AA scans, keyboard and structure checks)",
     "npm run test:visual       - check the UKHSA homepage layout matches the last passing run (updates the baseline on a pass)",
     "npm run test:visual:reset - throw away the saved screenshot and take a fresh baseline",
-    "Pick a release or user story with --grep, e.g. npm run test:e2e -- --grep @R2   or   npm run test:sit -- --grep \"@R3 @US4\"",
+    "Pick a sprint or user story with --grep, e.g. npm run test:e2e -- --grep @S2   or   npm run test:sit -- --grep \"@S3 @US4\"",
     "Add Playwright options after --, e.g. npm run test:head -- --project=chromium"
   ],
   "scripts": {

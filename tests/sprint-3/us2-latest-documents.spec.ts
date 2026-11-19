@@ -1,11 +1,11 @@
 import { test, expect } from '@playwright/test';
 import { homepage, acceptCookiesIfShown } from '../ukhsa';
 
-// Release 3 - User story 2
+// Sprint 3 - User story 2
 // As a member of the public, I want to see UKHSA's latest documents and find all of them,
 // so that I can keep up with new guidance and statistics.
 
-test.describe('R3 US2 - Latest documents', { tag: ['@R3', '@US2', '@live-safe'] }, () => {
+test.describe('S3 US2 - Latest documents', { tag: ['@S3', '@US2', '@live-safe'] }, () => {
   test('"See all latest documents" lists UKHSA content, newest first', async ({ page }) => {
     await page.goto(homepage);
     await acceptCookiesIfShown(page);
