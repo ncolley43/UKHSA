@@ -1,4 +1,16 @@
 import { defineConfig, devices } from '@playwright/test';
+import { currentEnvironment } from './config/environments';
+
+/* Which environment to test - set with TEST_ENV (sit, e2e or live), see config/environments.ts */
+const environment = currentEnvironment();
+
+/* Say once which environment this run is pointing at (workers load this file too, so skip them) */
+if (!process.env.TEST_WORKER_INDEX) {
+  console.log(`Testing against ${environment.label}: ${process.env.BASE_URL ?? environment.baseURL}`);
+}
+
+/* On live, release tests only run if they're tagged @live-safe (read-only, change no data) */
+const releaseTestGrep = environment.liveSafeOnly ? /@live-safe/ : undefined;
 
 /**
  * Read environment variables from file.
@@ -30,8 +42,8 @@ export default defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('')`. */
-    /* Override with the BASE_URL environment variable to target another environment. */
-    baseURL: process.env.BASE_URL ?? 'https://www.gov.uk',
+    /* Comes from the chosen environment - BASE_URL overrides it for a one-off run. */
+    baseURL: process.env.BASE_URL ?? environment.baseURL,
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
@@ -39,6 +51,8 @@ export default defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
+    /* The API, accessibility and visual checks are read-only, so they run in every environment, live included. */
+
     /* API tests don't need a browser, so run them once in their own project. */
     {
       name: 'api',
@@ -59,21 +73,25 @@ export default defineConfig({
       use: { ...devices['Desktop Chrome'] },
     },
 
+    /* Release and user story tests (tests/release-*) run in all three browsers. */
     {
       name: 'chromium',
       testIgnore: ['api/**', 'accessibility/**', 'visual/**'],
+      grep: releaseTestGrep,
       use: { ...devices['Desktop Chrome'] },
     },
 
     {
       name: 'firefox',
       testIgnore: ['api/**', 'accessibility/**', 'visual/**'],
+      grep: releaseTestGrep,
       use: { ...devices['Desktop Firefox'] },
     },
 
     {
       name: 'webkit',
       testIgnore: ['api/**', 'accessibility/**', 'visual/**'],
+      grep: releaseTestGrep,
       use: { ...devices['Desktop Safari'] },
     },
 
